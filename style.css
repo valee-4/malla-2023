@@ -1,50 +1,49 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #ffe4f0;
-  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff0f5;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
 
 h1 {
   text-align: center;
-  margin: 20px 0;
   color: #c2185b;
+  margin-bottom: 0;
 }
 
-.malla {
+.instruccion {
+  text-align: center;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
+  gap: 16px;
   padding: 20px;
-  max-width: 1200px;
-  margin: auto;
 }
 
-.ramo {
-  padding: 15px;
+.curso {
   background-color: #f8bbd0;
-  border: 2px solid #c2185b;
+  padding: 12px;
   border-radius: 10px;
-  cursor: pointer;
   text-align: center;
-  transition: background-color 0.3s ease;
   font-weight: bold;
+  cursor: pointer;
+  border: 2px solid #f48fb1;
+  transition: all 0.3s ease;
 }
 
-.ramo.locked {
-  background-color: #f3e5f5;
-  border-color: #9c27b0;
+.curso.locked {
+  background-color: #fce4ec;
   color: #aaa;
+  border: 2px dashed #f48fb1;
   cursor: not-allowed;
 }
 
-.ramo.approved {
+.curso.completed {
   background-color: #f06292;
-  border-color: #ad1457;
   color: white;
-}
-
-.ramo:hover:not(.locked):not(.approved) {
-  background-color: #f48fb1;
+  text-decoration: line-through;
 }
