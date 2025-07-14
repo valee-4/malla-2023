@@ -1,3 +1,4 @@
+// Define los cursos y a cuáles desbloquean cuando se completan
 const cursos = {
   "matematica": ["estadistica1", "competencias1"],
   "etica": ["epistemologia", "competencias1"],
@@ -58,15 +59,17 @@ const cursos = {
   "tesis3": ["tesis4"]
 };
 
+// Cargar progreso guardado
 const estado = JSON.parse(localStorage.getItem('estadoCursos') || '{}');
 
+// Función para actualizar visualmente los cursos
 function actualizarCursos() {
   document.querySelectorAll('.curso').forEach(curso => {
     const id = curso.dataset.id;
     curso.classList.remove('locked', 'completed');
 
     if (!estado[id]) {
-      const requisitos = Object.entries(cursos).filter(([_, deps]) => deps.includes(id)).map(([key]) => key);
+      const requisitos = Object.entries(cursos).filter(([_, dependencias]) => dependencias.includes(id)).map(([k]) => k);
       const bloqueado = requisitos.length > 0 && requisitos.some(req => !estado[req]);
       if (bloqueado) curso.classList.add('locked');
     } else {
@@ -75,20 +78,14 @@ function actualizarCursos() {
   });
 }
 
+// Evento principal
 document.addEventListener('DOMContentLoaded', () => {
-  const malla = document.getElementById('malla');
-  const todos = new Set(Object.keys(cursos).concat(...Object.values(cursos).flat()));
-  [...todos].forEach(id => {
-    const div = document.createElement('div');
-    div.className = 'curso';
-    div.dataset.id = id;
-    div.textContent = id.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    malla.appendChild(div);
-  });
+  const cursosDOM = document.querySelectorAll('.curso');
 
-  document.querySelectorAll('.curso').forEach(curso => {
+  cursosDOM.forEach(curso => {
     curso.addEventListener('click', () => {
       if (curso.classList.contains('locked')) return;
+
       const id = curso.dataset.id;
       estado[id] = !estado[id];
       localStorage.setItem('estadoCursos', JSON.stringify(estado));
