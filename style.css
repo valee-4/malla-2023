@@ -1,46 +1,50 @@
 body {
-  font-family: sans-serif;
-  padding: 20px;
-  background: #f7f7f7;
+  font-family: Arial, sans-serif;
+  background: #ffe4f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
   text-align: center;
-  color: #2c3e50;
+  margin: 20px 0;
+  color: #c2185b;
 }
 
-h2 {
-  margin-top: 40px;
-  color: #34495e;
-}
-
-.ciclo {
+.malla {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 15px;
-  margin-top: 15px;
+  gap: 12px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.curso {
-  background-color: #dff9fb;
-  border: 1px solid #7ed6df;
-  border-radius: 8px;
-  padding: 12px;
-  text-align: center;
+.ramo {
+  padding: 15px;
+  background-color: #f8bbd0;
+  border: 2px solid #c2185b;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  text-align: center;
+  transition: background-color 0.3s ease;
   font-weight: bold;
 }
 
-.curso:hover {
-  background-color: #c7ecee;
+.ramo.locked {
+  background-color: #f3e5f5;
+  border-color: #9c27b0;
+  color: #aaa;
+  cursor: not-allowed;
 }
 
-#info-box {
-  margin-top: 30px;
-  padding: 15px;
-  background-color: #ffffff;
-  border: 2px dashed #95afc0;
-  border-radius: 10px;
-  font-size: 16px;
+.ramo.approved {
+  background-color: #f06292;
+  border-color: #ad1457;
+  color: white;
+}
+
+.ramo:hover:not(.locked):not(.approved) {
+  background-color: #f48fb1;
 }
