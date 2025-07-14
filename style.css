@@ -1,3 +1,4 @@
+/* Estilo general */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #fff0f5;
@@ -14,34 +15,62 @@ h1 {
 .instruccion {
   text-align: center;
   color: #444;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  padding: 20px;
+/* Estructura de la malla */
+.malla {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  gap: 20px;
 }
 
-.curso {
-  background-color: #f8bbd0;
-  padding: 12px;
-  border-radius: 10px;
+.ciclo {
+  background-color: #fce4ec;
+  border: 2px solid #f8bbd0;
+  border-radius: 12px;
+  padding: 15px;
+  min-width: 220px;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+
+.ciclo h2 {
   text-align: center;
-  font-weight: bold;
-  cursor: pointer;
+  font-size: 18px;
+  color: #880e4f;
+  margin-top: 0;
+}
+
+/* Estilo de los cursos */
+.curso {
+  background-color: white;
+  color: #880e4f;
   border: 2px solid #f48fb1;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
+.curso:hover {
+  background-color: #f8bbd0;
+}
+
+/* Estado bloqueado */
 .curso.locked {
-  background-color: #fce4ec;
-  color: #aaa;
-  border: 2px dashed #f48fb1;
+  background-color: #f8f8f8;
+  color: #999;
+  border-style: dashed;
   cursor: not-allowed;
 }
 
+/* Estado aprobado */
 .curso.completed {
   background-color: #f06292;
   color: white;
