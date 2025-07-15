@@ -1,4 +1,4 @@
-// Define los cursos y a cuáles desbloquean cuando se completan
+// Mapa de cursos y los que desbloquean
 const cursos = {
   "matematica": ["estadistica1", "competencias1"],
   "etica": ["epistemologia", "competencias1"],
@@ -59,18 +59,21 @@ const cursos = {
   "tesis3": ["tesis4"]
 };
 
-// Cargar progreso guardado
+// Cargar estado desde localStorage
 const estado = JSON.parse(localStorage.getItem('estadoCursos') || '{}');
 
-// Función para actualizar visualmente los cursos
+// Actualiza los estilos según estado de cada curso
 function actualizarCursos() {
   document.querySelectorAll('.curso').forEach(curso => {
     const id = curso.dataset.id;
     curso.classList.remove('locked', 'completed');
 
+    // Solo puede ser completado si se cumplieron los prerrequisitos
     if (!estado[id]) {
-      const requisitos = Object.entries(cursos).filter(([_, dependencias]) => dependencias.includes(id)).map(([k]) => k);
-      const bloqueado = requisitos.length > 0 && requisitos.some(req => !estado[req]);
+      const requisitos = Object.entries(cursos)
+        .filter(([_, dependientes]) => dependientes.includes(id))
+        .map(([prereq]) => prereq);
+      const bloqueado = requisitos.length > 0 && requisitos.some(pr => !estado[pr]);
       if (bloqueado) curso.classList.add('locked');
     } else {
       curso.classList.add('completed');
@@ -78,7 +81,7 @@ function actualizarCursos() {
   });
 }
 
-// Evento principal
+// Ejecutar una vez que cargue la página
 document.addEventListener('DOMContentLoaded', () => {
   const cursosDOM = document.querySelectorAll('.curso');
 
@@ -87,11 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (curso.classList.contains('locked')) return;
 
       const id = curso.dataset.id;
-      estado[id] = !estado[id];
+      estado[id] = !estado[id]; // alterna aprobado/no aprobado
       localStorage.setItem('estadoCursos', JSON.stringify(estado));
       actualizarCursos();
     });
   });
 
-  actualizarCursos();
+  actualizarCursos(); // primera carga
 });
