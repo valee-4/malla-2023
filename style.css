@@ -1,78 +1,100 @@
-/* Estilo general */
+/* Fondo y fuente general */
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #fff0f5;
+  background-color: #fdf6fb;
   margin: 0;
   padding: 20px;
 }
 
+/* Título principal */
 h1 {
   text-align: center;
-  color: #c2185b;
+  color: #7b1fa2; /* morado fuerte */
   margin-bottom: 0;
+  font-size: 28px;
 }
 
-.instruccion {
-  text-align: center;
-  color: #444;
-  margin-bottom: 30px;
+/* Espacio debajo del título */
+.espaciador {
+  height: 40px;
 }
 
-/* Estructura de la malla */
+/* Malla: contenedor horizontal de los años */
 .malla {
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding-bottom: 20px;
+  flex-direction: row;
+  justify-content: flex-start;
   gap: 20px;
+  overflow-x: auto;
+  padding: 0 10px;
 }
 
-.ciclo {
-  background-color: #fce4ec;
-  border: 2px solid #f8bbd0;
-  border-radius: 12px;
-  padding: 15px;
-  min-width: 220px;
-  flex-shrink: 0;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+/* Año (columna vertical con dos ciclos) */
+.anio {
+  display: flex;
+  flex-direction: column;
+  background-color: #f3e5f5; /* lila claro */
+  border: 2px solid #ce93d8;
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 250px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.ciclo h2 {
+.anio h2 {
   text-align: center;
+  color: #6a1b9a;
   font-size: 18px;
-  color: #880e4f;
-  margin-top: 0;
+  margin: 8px 0 12px 0;
 }
 
-/* Estilo de los cursos */
+/* Ciclo dentro del año */
+.ciclo {
+  background-color: #fff0f5;
+  border: 2px solid #f8bbd0;
+  border-radius: 8px;
+  margin: 8px 0;
+  padding: 10px;
+}
+
+.ciclo h3 {
+  text-align: center;
+  color: #ad1457;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* Curso (tarjeta interactiva) */
 .curso {
   background-color: white;
   color: #880e4f;
   border: 2px solid #f48fb1;
-  margin: 10px 0;
   padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
+  margin: 6px 0;
+  border-radius: 6px;
   text-align: center;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .curso:hover {
   background-color: #f8bbd0;
+  transform: scale(1.02);
 }
 
 /* Estado bloqueado */
 .curso.locked {
-  background-color: #f8f8f8;
+  background-color: #f3f3f3;
   color: #999;
-  border-style: dashed;
+  border: 2px dashed #ccc;
   cursor: not-allowed;
 }
 
 /* Estado aprobado */
 .curso.completed {
-  background-color: #f06292;
+  background-color: #ce93d8;
   color: white;
   text-decoration: line-through;
+  border: 2px solid #8e24aa;
 }
